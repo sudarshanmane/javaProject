@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Metamind</title>
+<style>
+
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    body{
+  background-image: linear-gradient(to right, #cfe2f8, #a6e9f4);
+}
+
+    #navbar{
+        display:  flex;
+        font-size: 60px;
+        font-weight: bolder;
+        align-items: center;
+        justify-content: space-around;
+        box-shadow: rgba(0, 0, 0, 0.45) 0px 15px 20px -20px;
+        position: fixed;
+        z-index: 1;
+        background-color: white;
+        width: 100%;
+        top: 0px;
+        background-image: linear-gradient(to right, #e0e7c3, #91c2fa)
+
+
+    }
+
+    #navbar img{
+        width: 35%;
+    }
+
+    #formsDiv{
+        display: flex;
+        flex-direction: column;
+        border-radius: 15px;  
+        justify-content: center;
+        align-items: center;   
+        position: relative;
+        top: 60px;
+        width: 75%;
+        margin: auto;
+        margin-top: 9%;
+        padding: 5% 0%;
+        background-image: radial-gradient(rgb(161, 161, 245) 20%, transparent 100%);
+        
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+
+
+
+    }
+    #divOfAB{
+        display: flex;
+        width: 80%;
+        align-items: center;
+        justify-content: space-around;
+        height: 180px;
+
+    }
+    #divOfAB>div{
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        justify-content: space-between;
+        height: 100%;
+        font-size: 25px;
+        width: 48%;
+        border-radius: 20px;
+        font-weight: 900;
+    
+    }
+    #divOfAB>div:first-child{
+        background-color: rgb(66, 131, 236);
+        color: white;
+
+    }
+
+
+    #divOfAB>div>h2{
+        margin-bottom: 1%;
+        color: rgb(250, 242, 127);   
+        margin-top: 2%; 
+        
+           
+    }
+    #divOfAB>div:first-child>a{
+        text-decoration: none;
+        color: white;
+    }
+
+    #divOfAB>div:last-child{
+        background-color: rgb(211, 161, 170);
+        color: rgb(55, 58, 237)
+
+    }  
+    #divOfAB>div:last-child>a{
+        text-decoration: none;
+    }
+
+    #divOfMeta{
+        width: 80%;
+        height: 170px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1.5%;
+        background-color: rgb(47, 206, 206);
+        border-radius: 25px;
+    }
+    #divOfMeta>div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        height: 80%;
+        font-size: 25px;
+        font-weight: 900;
+    }
+
+    #divOfMeta a{
+        margin-top: 3%;
+        text-decoration: none;
+        color: rgb(24, 0, 240);;
+    }
+    #divOfMeta>div>a:nth-child(3){
+        margin-top: -5%;
+    }
+
+
+</style>
+</head>
+<body>
+
+    <div id="navbar">
+        <div><a href="http://localhost:8080/homePage"><img src="https://lh3.googleusercontent.com/hEyGPAhNJa0RfcemRJi-tl9EEPWc7V_pOGOIkyk8ZclTAq2socUM37aUM_xv0EDh2Vlc-p-4XyX-Q91FHiHnOO03GtmDxyWX4g-Z1zXit7p19fM5G_sodscM8o7jvecthLjb-NQovhcQZSkbT14CHVH4_ApBC-e-3IdletSHdUmPkk-7lZBL8wAp8tMQpfEWKnH4FamiMzB-5cYM36PvdYumRAXBOpU96wGuNsmEz7xjk-f4FK2mV9p2KMmCsE-xVg4wWrvNUYPqrc2SOTEVtGNVkyNgthPXbXivNN1jkYVGi0lDamkt2OnIE2snrFwO7w3KEI0gkgUhFIXIgK-R9jRiMsZBd4WSwIEsDrh4SejvBiV9wW0WxCwfhGD154yyp2w83JvSLM-4saYwlCGwDDf8i1pkulZuYIt4AiR-Tf_G8HZsB0gIY8-IORcrV1LL7N4OQoJKcwSV_OPv-CsRonJ56zXwd0ixPp47MDuNqsI-9fgOwlyvyMXmPy4-6xXNb6edH5Z4p_miF513MnCoQbBG0CI1SlqjLUfa3UYRFfZsdL9woChei48zJYCUGZFOm6wKlZchx8aNHYPRyv1432YA0KkFPB79iXRBA4P6nr0Hr1YBF3rePPHMoEk1Wz1BK1bo5GDverCo3FdMy59RggTowwWZTeuUYV_3EX454CkeNRN2fGZW2YHsFNtQDvUFtM0efE2H0Azcl3zHV064yPZbQ8isMV8HtFSroieZXEzuIytp-JjT3PSNSMbv4zOc0PKtg63Fvy45OHcPwGo_d0-6m5qrSIxQtrJ3H5nWaUOnAh37a9YtyplBQYvf6K9Lqub5cuIHKstFvnRfdY-hngJJ38VrhTqPKSHX0iTTrEz7ejSzngX3dKi21sQqgDY0r7QsOllxcJ6VSuHCOf-o3el_NtEfKJ1-kVPRrZA0y85K=w824-h303-no?authuser=0" alt=""></a>
+        </div>
+        <div>First Project</div>
+    </div>
+
+    <div id="formsDiv">
+        <div id="divOfAB">
+            <div>
+                <h2>Table <span style="color: rgb(0, 0, 0);"> A</span></h2>
+                <a href="http://localhost:8080/registrationForm">Registration Form for table A</a><br>
+                <a href="http://localhost:8080/getAllRegisteredDetails">All Registered Details of Table A</a><br>
+            </div>
+            
+            <div>
+                <h2>Table <span style="color: rgb(0, 0, 0);"> B</span></h2>
+                    <a href="http://localhost:8080/registrationFormB">Registration Form for table B</a><br>
+                    <a href="http://localhost:8080/getAllRegisteredDetailsOfB">All Registered Details of Table B</a><br>
+            </div>
+        </div>
+        
+        <div id="divOfMeta">
+            <div>
+                <h2 ><span style="color: rgb(235, 225, 31);">Metadata</span> Entry Table</h2>
+                <a href="http://localhost:8080/metadetaRegistrationForm">Metadeta Registration Form</a><br>
+                <a  style="margin-top: -1%;" href="http://localhost:8080/getAllRegisteredDetailsOfMetadeta">All Registered Details of Metadata Entry</a><br>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

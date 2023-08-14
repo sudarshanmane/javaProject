@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Registered Details</title>
+
+<style type="text/css">
+   *{
+   margin :0px ;
+   padding:0px
+   }
+
+  body{
+  	background-image: linear-gradient(to right, #cfe2f8, #c6f6f8);
+  	}
+
+     #navbar{
+        display:  flex;
+        font-size: 60px;
+        font-weight: bolder;
+        align-items: center;
+        justify-content: space-around;
+        box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+        position: fixed;
+        z-index: 2;
+        background-color: white;
+        width: 100%;
+        top: 0px;
+        transition: top 0.3s;
+        background-image: linear-gradient(to right, #e0e7c3, #91c2fa)
+        
+    }
+
+
+    #navbar img{
+        width: 35%;
+    }
+    
+
+
+    #navbar{
+        display:  flex;
+        font-size: 60px;
+        font-weight: bolder;
+        align-items: center;
+        justify-content: space-around;
+        box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    }
+
+    #navbar img{
+        width: 35%;
+    }
+    
+     
+
+        #registerdTopDetails{
+            margin: auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 20px;
+            font-weight: 600;
+            font-family: 'Merienda', cursive;
+            margin-top: 140px;                                                                            
+        }
+        #registerdTopDetails a{
+            text-decoration: none;
+            font-size: 25px;
+        }
+
+  #detailsNotFond{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+    }
+    #detailsNotFond button{
+        border: none;
+        padding: .5% 1%;
+        border-radius: 15%;
+        background-color: aqua;
+        font-size: 18px;
+    }
+
+   #registeredDetailsList ,#DetailsNotFound{
+   	display: none;
+   }
+   
+   table{
+            width: 98%;
+            margin:auto;
+            margin-top:20px;
+            border: 1px solid rgb(237, 180, 180);
+            
+        }
+        
+
+       table, th, td {
+        border: 0.1px solid rgb(120, 120, 120);
+           border-collapse: collapse;
+        }
+        
+       table tr{
+            width: 100%;
+            background-color: rgb(11, 225, 233);
+
+        }
+
+        #deleteBtn{
+            background-color: rgb(238, 91, 91);
+            padding:8%;
+            border: none;
+            border-radius: 5px;
+            width: 90%;
+            margin: auto;
+            font-size: 16px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        #updateBtn{
+            background-color: rgb(91, 216, 238);
+            padding:8%;
+            border: none;
+            border-radius: 5px;
+            width: 90%;
+            margin: auto;
+            font-size: 16px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+        }
+
+        #metadetaJSONObject{
+          display: none;
+        }
+
+        td{
+          padding: .3%;
+          background-color: aquamarine;
+          
+          
+        }
+    #pagination {
+            display: flex;
+
+        }
+
+        #pagination {
+            display: grid;
+            width: 20%;
+            grid-template-columns: repeat(4,1fr);
+            gap: 20% 10%;
+            align-items: center;
+            position: relative;
+            top: 20px;
+            left: 75%;
+            margin-bottom: 100px;
+            
+        }
+
+        #pagination div{
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-size: 17px;
+            font-weight: 600;
+            padding: 7% 2%;
+            border-radius: 7px;
+            background-color: rgb(111, 225, 225);
+        }
+        #pagination div:first-child{
+            background-color : rgb(184, 114, 248);
+            color : white;
+        }
+    
+
+    
+    
+    </style>
+</head>
+<body>
+    <div>
+        
+     <p id="metadetaJSONObject" th:text="${metadetasJson}"></p>
+
+    <div id="navbar">
+        <div><a href="http://localhost:8080/homePage"><img src="https://lh3.googleusercontent.com/hEyGPAhNJa0RfcemRJi-tl9EEPWc7V_pOGOIkyk8ZclTAq2socUM37aUM_xv0EDh2Vlc-p-4XyX-Q91FHiHnOO03GtmDxyWX4g-Z1zXit7p19fM5G_sodscM8o7jvecthLjb-NQovhcQZSkbT14CHVH4_ApBC-e-3IdletSHdUmPkk-7lZBL8wAp8tMQpfEWKnH4FamiMzB-5cYM36PvdYumRAXBOpU96wGuNsmEz7xjk-f4FK2mV9p2KMmCsE-xVg4wWrvNUYPqrc2SOTEVtGNVkyNgthPXbXivNN1jkYVGi0lDamkt2OnIE2snrFwO7w3KEI0gkgUhFIXIgK-R9jRiMsZBd4WSwIEsDrh4SejvBiV9wW0WxCwfhGD154yyp2w83JvSLM-4saYwlCGwDDf8i1pkulZuYIt4AiR-Tf_G8HZsB0gIY8-IORcrV1LL7N4OQoJKcwSV_OPv-CsRonJ56zXwd0ixPp47MDuNqsI-9fgOwlyvyMXmPy4-6xXNb6edH5Z4p_miF513MnCoQbBG0CI1SlqjLUfa3UYRFfZsdL9woChei48zJYCUGZFOm6wKlZchx8aNHYPRyv1432YA0KkFPB79iXRBA4P6nr0Hr1YBF3rePPHMoEk1Wz1BK1bo5GDverCo3FdMy59RggTowwWZTeuUYV_3EX454CkeNRN2fGZW2YHsFNtQDvUFtM0efE2H0Azcl3zHV064yPZbQ8isMV8HtFSroieZXEzuIytp-JjT3PSNSMbv4zOc0PKtg63Fvy45OHcPwGo_d0-6m5qrSIxQtrJ3H5nWaUOnAh37a9YtyplBQYvf6K9Lqub5cuIHKstFvnRfdY-hngJJ38VrhTqPKSHX0iTTrEz7ejSzngX3dKi21sQqgDY0r7QsOllxcJ6VSuHCOf-o3el_NtEfKJ1-kVPRrZA0y85K=w824-h303-no?authuser=0" alt=""></a>
+        </div>
+        <div>First Project</div>
+    </div>
+     
+      
+       <div id="registerdTopDetails">
+         <h1>Registered Details Of Metadeta Entry</h1>
+         <a id="registrationFormLink" href="http://localhost:8080/metadetaRegistrationForm">Registration Form of Metadeta Entry</a>     
+     </div>
+      
+     <table>
+
+     </table>
+    </div>
+
+   <div id="pagination">
+    <div>1</div>
+   </div>
+        <div id="detailsNotFond"></div>
+        
+
+</body>
+</html>
+
+<script type="text/javascript">
+    
+    fetch('/getAllRegisteredDetailsOfMetadetafetch')
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        
+      const registeredDetailsList =  document.querySelector('#metadetaJSONObject').innerHTML;
+      let registeredDetailsJsonObject =   data;
+     
+      
+         let  numberOfDetailsToShow= 7;
+
+    let pageStartIndex = 0;
+    let pageEndIndex = numberOfDetailsToShow;
+
+      let totalDetails = registeredDetailsJsonObject.length;
+
+      while(totalDetails%numberOfDetailsToShow!=0){
+        totalDetails++;
+      }
+
+      let divsInsidePagination  = document.querySelector('#pagination');
+      divsInsidePagination.innerHTML = null;
+      for(let numberOfDivs = 0;numberOfDivs<totalDetails/numberOfDetailsToShow;numberOfDivs++){
+        const paginationDiv = document.createElement('div');
+        paginationDiv.innerText = numberOfDivs+1;
+        divsInsidePagination.append(paginationDiv);
+      }
+
+    const pagination = document.querySelectorAll('#pagination div');
+
+    for (let pageIndex = 0;pageIndex < pagination.length; pageIndex++) {
+        pagination[pageIndex].addEventListener("click",changePage);
+    }
+
+    function changePage(){
+        for (let pageIndex = 0;pageIndex < pagination.length; pageIndex++) {
+            pagination[pageIndex].style.backgroundColor= "rgb(111, 225, 225)";
+            pagination[pageIndex].style.color= "black";
+        }
+
+        event.target.style.backgroundColor= "rgb(184, 114, 248)";
+        event.target.style.color= "white";
+
+        let currentPageNum = event.target.innerHTML*numberOfDetailsToShow;
+        pageEndIndex = currentPageNum;
+        pageStartIndex= currentPageNum - numberOfDetailsToShow;
+        displayDetails();
+    }
+      
+    // -------- id details no found --------
+
+      if(registeredDetailsJsonObject.length==0){
+      
+      const registerationDetailsNotfFound = document.querySelector('#detailsNotFond');
+            registerationDetailsNotfFound.innerHTML="";
+            let registerationMessage = document.createElement("h3");
+            registerationMessage.innerHTML =  "No Registeration Found. Please Register."
+            let registerButton  = document.createElement('button');
+            registerButton.innerText = "Register";
+            registerationDetailsNotfFound.append(registerationMessage,registerButton);     
+               registerButton.addEventListener("click",function(){
+                window.location.href="http://localhost:8080/metadetaRegistrationForm"; 
+            });
+        }
+      
+        // appending details to table
+      const registeredDetails = document.querySelector('table');
+        
+        
+        displayDetails();
+       function displayDetails(){
+        registeredDetails.innerHTML="";
+
+        registeredDetails.innerHTML = `
+        <tr style="background-color: rgb(173, 225, 238);height: 50px; font-size: 18px;">
+           <th>sr</th>
+           <th>Volume </th>
+           <th>Fin Year</th>
+           <th>Sub Registrar Office</th>
+           <th>Total Pages</th>
+           <th>Missing Pages</th>
+           <th>No. of Documents</th>
+           <th colspan="3">Document</th>
+           <th colspan="2">Duration</th>
+           <th>Delete</th>
+           <th>Update</th>
+       </tr>
+ 
+       <tr style="background-color: rgb(173, 225, 238);height: 50px; font-size: 18px;text-align: center;">
+           <td style="border: none;"></td>
+           <td style="border: none;"></td>
+           <td style="border: none;"></td>
+           <td style="border: none;"></td>
+           <td style="border: none;"></td>
+           <td style="border: none;"></td>
+           <td style="border: none;"></td>
+           <td>Number</td>
+           <td>From Page</td>
+           <td>To Page</td>
+           <td>Start date</td>
+           <td>End date</td>
+           <td></td>
+           <td></td>
+       </tr>`;
+
+        for (let index = pageStartIndex; index <pageEndIndex; index++) {
+            const element = registeredDetailsJsonObject[index];
+
+        let tr = document.createElement('tr');
+        
+        let d = document.createElement('td');
+        d.innerText = index+1;
+        
+        let d1 = document.createElement('td');
+        d1.innerText = element.volume_type;
+
+        let d2= document.createElement('td');
+        d2.innerText = element.fin_year;
+
+        let d3 = document.createElement('td');
+        d3.innerText = element.sub_registrar_office;
+
+        let d4 = document.createElement('td');
+        d4.innerText = element.total_pages;
+
+        let d5 = document.createElement('td');
+        d5.innerText = element.missing_pages;
+
+        let d6 = document.createElement('td');
+        d6.innerText = element.no_of_documents;
+
+        let d7 = document.createElement('td');
+        d7.innerText = element.number;
+
+        let d8 = document.createElement('td');
+        d8.innerText = element.from_page;
+
+        let d9 = document.createElement('td');
+        d9.innerText = element.to_page;
+
+        let d10 = document.createElement('td');
+        d10.innerText = element.start_date;
+
+        let d11 = document.createElement('td');
+        d11.innerText = element.end_date;
+
+        let td12  = document.createElement('td');
+
+        let deleteButton = document.createElement("button");
+        td12.append(deleteButton);
+        deleteButton.innerText="Delete";
+        deleteButton.setAttribute("id","deleteBtn");
+    
+        deleteButton.addEventListener("click",function(){
+            deleteRegisteredDetails(element,index);
+        });
+
+        let td13  = document.createElement('td');
+        let updateBtn = document.createElement("button");
+        updateBtn.innerText="Update";
+        td13.append(updateBtn);
+
+        updateBtn.setAttribute("id","updateBtn");
+
+        updateBtn.addEventListener("click",function(){
+            updateRegisteredDetails(element,index);
+        });
+
+        tr.append(d,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,td12,td13);
+        registeredDetails.append(tr);
+        
+        tr.style.backgroundColor= "aquamarine";
+        
+        };
+         
+         function deleteRegisteredDetails(element,index){
+            window.location.href="http://localhost:8080/deletedMetadetaEntry/"+ element.sr;
+          };
+            
+
+         
+        function updateRegisteredDetails(element,index){
+             console.log(element);
+             localStorage.setItem("elementToUpdateDetailsOfMetadeta",JSON.stringify(element)); 
+             window.location.href="http://localhost:8080/getMetadataUpdationForm";
+
+         }   
+         
+        }
+
+
+
+    
+
+        
+
+    })
+    .catch(error => {console.error(error);
+    console.log(error)
+            
+    });
+
+     
+       
+        </script>
+

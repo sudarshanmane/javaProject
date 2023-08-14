@@ -1,0 +1,11 @@
+*{
+	padding: 0px;
+	margin: 0px;
+}
+
+#registrationForm{
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	width:50%;
+}
